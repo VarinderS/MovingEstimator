@@ -6,6 +6,9 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using System.Data.Entity;
+using MovingEstimator.Models;
+using MovingEstimator.App_Start;
 
 namespace MovingEstimator
 {
@@ -22,6 +25,8 @@ namespace MovingEstimator
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            Database.SetInitializer<EstimateContext>(new DbInitializer());
         }
     }
 }
