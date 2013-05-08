@@ -10,5 +10,11 @@ namespace MovingEstimator.Models
     {
         public DbSet<Price> Prices { get; set; }
         public DbSet<Location> Locations { get; set; }
+
+        public EstimateContext() 
+        {
+            Configuration.ProxyCreationEnabled = false;
+        }
+        
     }
 }

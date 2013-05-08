@@ -9,6 +9,7 @@ using System.Web.Routing;
 using System.Data.Entity;
 using MovingEstimator.Models;
 using MovingEstimator.App_Start;
+using System.Net.Http.Formatting;
 
 namespace MovingEstimator
 {
@@ -24,9 +25,18 @@ namespace MovingEstimator
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            GlobalConfiguration.Configuration.Formatters.XmlFormatter.AddUriPathExtensionMapping("xml", "text/xml");
+            GlobalConfiguration.Configuration.Formatters.JsonFormatter.AddUriPathExtensionMapping("json", "application/json");
+            
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             Database.SetInitializer<EstimateContext>(new DbInitializer());
+
+            var json = GlobalConfiguration.Configuration.Formatters.JsonFormatter;
+            //json.SerializerSettings.PreserveReferencesHandling =
+                //Newtonsoft.Json.PreserveReferencesHandling.Objects;
+            json.SerializerSettings.Formatting = Newtonsoft.Json.Formatting.Indented;
+
         }
     }
 }

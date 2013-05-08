@@ -10,6 +10,6 @@ namespace MovingEstimator.Models
         public int LocationId { get; set; }
         public string LocationName { get; set; }
 
-        public virtual ICollection<Price> PriceEstimates { get; set; }
+        //public virtual ICollection<Price> PriceEstimates { get; set; }
     }
 }
