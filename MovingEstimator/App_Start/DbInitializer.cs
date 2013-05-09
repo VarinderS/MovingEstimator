@@ -13,10 +13,10 @@ namespace MovingEstimator.App_Start
         {
             var loc = new List<Location>
             {
-                new Location { LocationName = "Auckland" },
-                new Location { LocationName = "Warkworth" },
-                new Location { LocationName = "Snells Beach" },
-                new Location { LocationName = "Welsford" }
+                new Location { Name = "Auckland" },
+                new Location { Name = "Warkworth" },
+                new Location { Name = "Snells Beach" },
+                new Location { Name = "Welsford" }
             };
 
             loc.ForEach(l => context.Locations.Add(l));
@@ -24,10 +24,10 @@ namespace MovingEstimator.App_Start
 
             var price = new List<Price>
             {
-                new Price { LocationId = 1, PriceValue = 100 },
-                new Price { LocationId = 2, PriceValue = 200 },
-                new Price { LocationId = 3, PriceValue = 300 },
-                new Price { LocationId = 4, PriceValue = 400 }
+                new Price { LocationFromId = 1, LocationToId = 2, PriceValue = 100 },
+                new Price { LocationFromId = 2, LocationToId = 3, PriceValue = 200 },
+                new Price { LocationFromId = 3, LocationToId = 4, PriceValue = 300 },
+                new Price { LocationFromId = 4, LocationToId = 1, PriceValue = 400 }
             };
 
             price.ForEach(p => context.Prices.Add(p));

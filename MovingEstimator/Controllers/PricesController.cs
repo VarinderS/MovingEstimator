@@ -12,20 +12,22 @@ using MovingEstimator.Models;
 
 namespace MovingEstimator.Controllers
 {
-    public class PriceController : ApiController
+    public class PricesController : ApiController
     {
         private EstimateContext db = new EstimateContext();
-        // GET api/Price
+
+        // GET api/Prices
         public IEnumerable<Price> GetPrices()
         {
-            var prices = db.Prices.Include(p => p.Location);
+            var prices = db.Prices.Include(p => p.From).Include(p => p.To);
             return prices.AsEnumerable();
         }
 
-        // GET api/Price/5
+        // GET api/Prices/5
         public Price GetPrice(int id)
         {
             Price price = db.Prices.Find(id);
+            
             if (price == null)
             {
                 throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound));
@@ -34,7 +36,7 @@ namespace MovingEstimator.Controllers
             return price;
         }
 
-        // PUT api/Price/5
+        // PUT api/Prices/5
         public HttpResponseMessage PutPrice(int id, Price price)
         {
             if (!ModelState.IsValid)
@@ -42,7 +44,7 @@ namespace MovingEstimator.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
             }
 
-            if (id != price.PriceId)
+            if (id != price.ID)
             {
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
             }
@@ -61,7 +63,7 @@ namespace MovingEstimator.Controllers
             return Request.CreateResponse(HttpStatusCode.OK);
         }
 
-        // POST api/Price
+        // POST api/Prices
         public HttpResponseMessage PostPrice(Price price)
         {
             if (ModelState.IsValid)
@@ -70,7 +72,7 @@ namespace MovingEstimator.Controllers
                 db.SaveChanges();
 
                 HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, price);
-                response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = price.PriceId }));
+                response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = price.ID }));
                 return response;
             }
             else
@@ -79,7 +81,7 @@ namespace MovingEstimator.Controllers
             }
         }
 
-        // DELETE api/Price/5
+        // DELETE api/Prices/5
         public HttpResponseMessage DeletePrice(int id)
         {
             Price price = db.Prices.Find(id);

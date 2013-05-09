@@ -33,8 +33,7 @@ namespace MovingEstimator
             Database.SetInitializer<EstimateContext>(new DbInitializer());
 
             var json = GlobalConfiguration.Configuration.Formatters.JsonFormatter;
-            //json.SerializerSettings.PreserveReferencesHandling =
-                //Newtonsoft.Json.PreserveReferencesHandling.Objects;
+            //json.SerializerSettings.PreserveReferencesHandling = Newtonsoft.Json.PreserveReferencesHandling.Objects;
             json.SerializerSettings.Formatting = Newtonsoft.Json.Formatting.Indented;
 
         }

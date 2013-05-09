@@ -1,15 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using Newtonsoft.Json;
 
 namespace MovingEstimator.Models
 {
     public class Location
     {
-        public int LocationId { get; set; }
-        public string LocationName { get; set; }
+        [Key]
+        public int ID { get; set; }
+        public string Name { get; set; }
 
-        //public virtual ICollection<Price> PriceEstimates { get; set; }
+        [JsonIgnore]
+        public virtual ICollection<Price> FromPrices { get; set; }
+
+        [JsonIgnore]
+        public virtual ICollection<Price> ToPrices { get; set; }
+
     }
 }
