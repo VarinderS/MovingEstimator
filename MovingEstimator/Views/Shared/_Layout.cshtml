@@ -8,9 +8,14 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    @RenderBody()
+
+    @RenderBody() 
 
     @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundels/ember")
+    
     @RenderSection("scripts", required: false)
+
+
 </body>
 </html>

@@ -23,7 +23,15 @@ namespace MovingEstimator
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/site.css"));
+            bundles.Add(new ScriptBundle("~/bundels/ember").Include(
+                    "~/Scripts/handlebars-{version}-rc.3.js",
+                    "~/Scripts/ember-{version}-rc.3.js",
+                    "~/SCripts/App.js"));
+
+            bundles.Add(new StyleBundle("~/Content/css").Include(
+                    "~/Content/base.css",
+                    "~/Content/type.css",
+                    "~/Content/style.css"));
 
             bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(
                         "~/Content/themes/base/jquery.ui.core.css",

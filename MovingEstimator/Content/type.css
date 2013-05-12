@@ -1,0 +1,221 @@
+/*
+#Global settings
+
+Sets basic global display styles. Specifically, we:
+<ul>
+    <li>Sets ```font-size: 14px;``` on the ```html,body```</li>
+    <li>Sets ```color:#222``` and ```font-family:"Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif``` on body</li>
+</ul>
+ */
+p.lead {
+  font-size: 1.25em;
+  line-height: 1.6;
+}
+
+html,
+body {
+  font-size: 14px;
+}
+
+body {
+  color: #222222;
+  font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+  font-weight: normal;
+  font-style: normal;
+}
+
+div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, p, blockquote, th, td {
+  margin: 0;
+  padding: 0;
+}
+
+/*
+##Default Link styles
+...content...
+*/
+a {
+  color: #333333;
+  text-decoration: none;
+  line-height: inherit;
+}
+a:hover, a:focus {
+  color: #262626;
+}
+a:visited {
+  color: #1a1a1a;
+}
+a img {
+  border: none;
+}
+
+/*
+##Default paragraph styles
+...content...
+*/
+p {
+  font-family: inherit;
+  font-weight: normal;
+  font-size: 1em;
+  line-height: 1.6;
+  margin-bottom: 1.42857em;
+}
+p aside {
+  font-size: 1em;
+  line-height: 1.35;
+  font-style: italic;
+}
+
+/*
+##Default header styles
+...content...
+*/
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  color: #222222;
+  text-rendering: optimizeLegibility;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  line-height: 1.18571em;
+}
+h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
+  font-size: 60%;
+  color: #6f6f6f;
+  line-height: 0;
+}
+
+h1 {
+  font-size: 3.14286em;
+}
+
+h2 {
+  font-size: 2.64286em;
+}
+
+h3 {
+  font-size: 1.92857em;
+}
+
+h4 {
+  font-size: 1.64286em;
+}
+
+h5 {
+  font-size: 1.21429em;
+}
+
+h6 {
+  font-size: 1em;
+}
+
+hr {
+  border: solid #dddddd;
+  border-width: 1px 0 0;
+  clear: both;
+  margin: 1.42857em 0 1.35714em;
+  height: 0;
+}
+
+/* Helpful Typography Defaults */
+em,
+i {
+  font-style: italic;
+  line-height: inherit;
+}
+
+strong,
+b {
+  font-weight: bold;
+  line-height: inherit;
+}
+
+small {
+  font-size: 60%;
+  line-height: inherit;
+}
+
+.print-only {
+  display: none !important;
+}
+
+@media print {
+  * {
+    background: transparent !important;
+    color: #000 !important;
+    /* Black prints faster: h5bp.com/s */
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  a,
+  a:visited {
+    text-decoration: underline;
+  }
+
+  a[href]:after {
+    content: " (" attr(href) ")";
+  }
+
+  abbr[title]:after {
+    content: " (" attr(title) ")";
+  }
+
+  .ir a:after,
+  a[href^="javascript:"]:after,
+  a[href^="#"]:after {
+    content: "";
+  }
+
+  pre,
+  blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid;
+  }
+
+  thead {
+    display: table-header-group;
+    /* h5bp.com/t */
+  }
+
+  tr,
+  img {
+    page-break-inside: avoid;
+  }
+
+  img {
+    max-width: 100% !important;
+  }
+
+  @page {
+    margin: 0.5cm;
+}
+
+  p,
+  h2,
+  h3 {
+    orphans: 3;
+    widows: 3;
+  }
+
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
+
+  .hide-on-print {
+    display: none !important;
+  }
+
+  .print-only {
+    display: block !important;
+  }
+
+  .hide-for-print {
+    display: none !important;
+  }
+
+  .show-for-print {
+    display: inherit !important;
+  }
+}

@@ -1,0 +1,36 @@
+.wrapper {
+	background: url("images/grid.png") repeat center center;
+	padding-top:100px;
+	padding-bottom:100px;
+}
+
+.guts {
+	border-top:10px solid #16a7d5;
+	padding:30px;
+	min-height:400px;
+	background-color: white;
+}
+.meat {
+	margin:0 -30px;
+}
+
+
+table {
+	width:100%;
+	background: none repeat scroll 0 0 white;
+	border-bottom:1px solid #E5EBF7;
+}
+table thead, table tfoot {
+	background: none repeat scroll 0 0 #16a7d5;
+	font-weight: bold;
+	color:white;
+}
+table tr th, table tr td {
+	padding: 5px 8px;
+}
+table tr + tr {
+	border-top:1px solid #E5EBF7;
+}
+table tr.even, table tr.alt, table tr:nth-of-type(2n) {
+	background-color: #F7FAFF;
+}
