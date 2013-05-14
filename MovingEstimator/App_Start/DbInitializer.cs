@@ -7,7 +7,7 @@ using MovingEstimator.Models;
 
 namespace MovingEstimator.App_Start
 {
-    public class DbInitializer : DropCreateDatabaseIfModelChanges<EstimateContext>
+    public class DbInitializer : DropCreateDatabaseAlways<EstimateContext>
     {
         protected override void Seed(EstimateContext context)
         {
@@ -24,10 +24,10 @@ namespace MovingEstimator.App_Start
 
             var price = new List<Price>
             {
-                new Price { LocationFromId = 1, LocationToId = 2, PriceValue = 100 },
-                new Price { LocationFromId = 2, LocationToId = 3, PriceValue = 200 },
-                new Price { LocationFromId = 3, LocationToId = 4, PriceValue = 300 },
-                new Price { LocationFromId = 4, LocationToId = 1, PriceValue = 400 }
+                new Price { LocationFromId = 1, LocationToId = 2, OneBdrm = 100, ThreeBdrm = 100, FiveBdrm = 100 },
+                new Price { LocationFromId = 2, LocationToId = 3, OneBdrm = 200, ThreeBdrm = 200, FiveBdrm = 200 },
+                new Price { LocationFromId = 3, LocationToId = 4, OneBdrm = 300, ThreeBdrm = 300, FiveBdrm = 300 },
+                new Price { LocationFromId = 4, LocationToId = 1, OneBdrm = 400, ThreeBdrm = 400, FiveBdrm = 400 }
             };
 
             price.ForEach(p => context.Prices.Add(p));

@@ -1,0 +1,38 @@
+﻿	<div class="wrapper">
+		<div class="row">
+			<div class="col-inner">
+				<div class="guts">
+					<div class="meat">
+                        <table>
+		                    <thead>
+			                    <tr>
+				                    <td>ID</td>
+				                    <td>From</td>
+				                    <td>To</td>
+				                    <td>One Bedroom</td>
+				                    <td>Three Bedroom</td>
+				                    <td>Five Bedroom</td>
+			                    </tr>
+		                    </thead>
+                            <tbody>
+                                <tr data-ng-repeat="price in prices">
+                                    <td>{{ price.ID }}
+                                        <input type="text" data-ng-model="price.ID" />
+                                    </td>
+                                    <td>{{ price.FromLocation }}
+                                        <select data-ng-model="price.FromLocation" data-ng-options="p.FromLocation as p.FromLocation for p in prices">
+                                        </select>
+                                    </td>
+                                    <td>{{ price.ToLocation }}</td>
+                                    <td>{{ price.OneBdrm }}</td>
+                                    <td>{{ price.ThreeBdrm }}</td>
+                                    <td>{{ price.FiveBdrm }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>

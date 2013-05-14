@@ -10,6 +10,7 @@ namespace MovingEstimator.Models
     public class PriceDto
     {
         public PriceDto() { }
+
         public PriceDto(Price price)
         {
             this.ID = price.ID;
@@ -17,7 +18,9 @@ namespace MovingEstimator.Models
             this.LocationFrom = price.From.Name;
             this.LocationToId = price.To.ID;
             this.LocationTo = price.To.Name;
-            this.PriceValue = price.PriceValue;
+            this.OneBdrm = price.OneBdrm;
+            this.ThreeBdrm = price.ThreeBdrm;
+            this.FiveBdrm = price.FiveBdrm;
         }
 
         [Key]
@@ -31,7 +34,9 @@ namespace MovingEstimator.Models
 
         public string LocationTo { get; set; }
 
-        public decimal PriceValue { get; set; }
+        public decimal OneBdrm { get; set; }
+        public decimal ThreeBdrm { get; set; }
+        public decimal FiveBdrm { get; set; }
 
         public Price ToEntity()
         {
@@ -40,7 +45,9 @@ namespace MovingEstimator.Models
                 ID = this.ID,
                 LocationFromId = this.LocationFromId,
                 LocationToId = this.LocationToId,
-                PriceValue = this.PriceValue
+                OneBdrm = this.OneBdrm,
+                ThreeBdrm = this.ThreeBdrm,
+                FiveBdrm = this.FiveBdrm
             };
         }
     }

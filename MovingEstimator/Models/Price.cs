@@ -17,7 +17,9 @@ namespace MovingEstimator.Models
         [JsonIgnore]
         public int LocationToId { get; set; }
 
-        public decimal PriceValue { get; set; }
+        public decimal OneBdrm { get; set; }
+        public decimal ThreeBdrm { get; set; }
+        public decimal FiveBdrm { get; set; }
 
         //[ForeignKey("LocationFromId")]
         public virtual Location From { get; set; }

@@ -28,6 +28,16 @@ namespace MovingEstimator
                     "~/Scripts/ember-{version}-rc.3.js",
                     "~/SCripts/App.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/ko").Include(
+                    "~/Scripts/knockout-2.2.0.js",
+                    "~/Scripts/knockout.mapping-latest.js",
+                    "~/Scripts/koGrid-2.1.1.js",
+                    "~/Scripts/App.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/ng").Include(
+                    "~/Scripts/angular.js",
+                    "~/Content/App/App.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                     "~/Content/base.css",
                     "~/Content/type.css",
@@ -45,7 +55,8 @@ namespace MovingEstimator
                         "~/Content/themes/base/jquery.ui.tabs.css",
                         "~/Content/themes/base/jquery.ui.datepicker.css",
                         "~/Content/themes/base/jquery.ui.progressbar.css",
-                        "~/Content/themes/base/jquery.ui.theme.css"));
+                        "~/Content/themes/base/jquery.ui.theme.css",
+                        "~/Content/KoGrid.css"));
         }
     }
 }

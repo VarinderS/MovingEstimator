@@ -27,73 +27,57 @@ namespace MovingEstimator.Controllers
         public PriceDto GetPrice(int id)
         {
             Price price = db.Prices.Find(id);
-
-            if (price != null)
-            {
-                return new PriceDto(price);
-
-            }
-            else
+            if (price == null)
             {
                 throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound));
             }
 
-            
+            return new PriceDto(price);
         }
 
         // PUT api/Prices/5
-        public HttpResponseMessage PutPrice(int id, PriceDto priceDto)
+        public HttpResponseMessage PutPrice(int id, PriceDto price)
         {
             if (!ModelState.IsValid)
             {
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
-                //throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.BadRequest, ModelState));
             }
 
-            if (id != priceDto.ID)
+            if (id != price.ID)
             {
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
-                //throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.BadRequest));
             }
 
-            Price priceEntity = priceDto.ToEntity();
+            Price priceEntity = price.ToEntity();
+            Location fromLocationEntity = db.Locations.Find(price.LocationFromId);
+            Location toLocationEntity = db.Locations.Find(price.LocationToId);
 
-            Location FromLocation = db.Locations.Find(priceEntity.LocationFromId);
-            Location ToLocation = db.Locations.Find(priceEntity.LocationToId);
-
-            
-            db.Entry(FromLocation).State = EntityState.Detached;
-            db.Entry(ToLocation).State = EntityState.Detached;
+            db.Entry(fromLocationEntity).State = EntityState.Detached;
+            db.Entry(toLocationEntity).State = EntityState.Detached;
             db.Entry(priceEntity).State = EntityState.Modified;
-
-            
 
             try
             {
                 db.SaveChanges();
-                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, priceDto);
-                return response;
             }
             catch (DbUpdateConcurrencyException ex)
             {
                 return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
-                //throw new HttpResponseException(Request.CreateErrorResponse(HttpStatusCode.NotFound, ex));
             }
 
-            
-            //return priceDto;
+            return Request.CreateResponse(HttpStatusCode.OK);
         }
 
         // POST api/Prices
-        public HttpResponseMessage PostPrice(PriceDto priceDto)
+        public HttpResponseMessage PostPrice(PriceDto price)
         {
             if (ModelState.IsValid)
             {
-                Price price = priceDto.ToEntity();
-                db.Prices.Add(price);
+                Price priceEntity = price.ToEntity();
+                db.Prices.Add(priceEntity);
                 db.SaveChanges();
 
-                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, priceDto);
+                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, price);
                 response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = price.ID }));
                 return response;
             }
@@ -112,6 +96,7 @@ namespace MovingEstimator.Controllers
                 return Request.CreateResponse(HttpStatusCode.NotFound);
             }
 
+
             db.Prices.Remove(price);
 
             try
@@ -123,7 +108,9 @@ namespace MovingEstimator.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
             }
 
-            return Request.CreateResponse(HttpStatusCode.OK, price);
+            price.From = db.Locations.Find(price.LocationFromId);
+            price.To = db.Locations.Find(price.LocationToId);
+            return Request.CreateResponse(HttpStatusCode.OK, new PriceDto(price));
         }
 
         protected override void Dispose(bool disposing)
