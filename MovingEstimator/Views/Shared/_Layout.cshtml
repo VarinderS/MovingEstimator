@@ -14,8 +14,10 @@
 
     @RenderBody() 
 
-    @Scripts.Render("~/bundles/ng")
+    @*@Scripts.Render("~/bundles/ng")*@
     
+    <script type="text/javascript" src="~/Scripts/angular.js"></script>
+    <script type="text/javascript" src="~/Content/App/App.js"></script>
 
     @RenderSection("scripts", required: false)
 
