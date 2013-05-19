@@ -3,30 +3,27 @@
 			<div class="col-inner">
 				<div class="guts">
 					<div class="meat">
+						<p>predicate: {{ predicate }}, reverse: {{ reverse }}</p>
+						<p><input type="text" ng-model="search" placeholder="search" /></p>
                         <table>
 		                    <thead>
 			                    <tr>
-				                    <td>ID</td>
-				                    <td>From</td>
-				                    <td>To</td>
-				                    <td>One Bedroom</td>
-				                    <td>Three Bedroom</td>
-				                    <td>Five Bedroom</td>
+				                    <td data-ng-click="sortBy('ID')">ID</td>
+				                    <td data-ng-click="sortBy('LocationFrom')">From</td>
+				                    <td data-ng-click="sortBy('LocationTo')">To</td>
+				                    <td data-ng-click="sortBy('OneBdrm')">One Bedroom</td>
+				                    <td data-ng-click="sortBy('ThreeBdrm')">Three Bedroom</td>
+				                    <td data-ng-click="sortBy('FiveBdrm')">Five Bedroom</td>
 			                    </tr>
 		                    </thead>
                             <tbody>
-                                <tr data-ng-repeat="price in prices">
-                                    <td>{{ price.ID }}
-                                        <input type="text" data-ng-model="price.ID" />
-                                    </td>
-                                    <td>{{ price.FromLocation }}
-                                        <select data-ng-model="price" data-ng-options="p.FromLocation as p.FromLocation for p in prices">
-                                        </select>
-                                    </td>
-                                    <td>{{ price.ToLocation }}</td>
-                                    <td>{{ price.OneBdrm }}</td>
-                                    <td>{{ price.ThreeBdrm }}</td>
-                                    <td>{{ price.FiveBdrm }}</td>
+                                <tr data-ng-repeat="price in prices | orderBy:predicate:reverse | filter:search">
+                                    <td ng-bind-html="display(price.ID)"></td>
+                                    <td ng-bind-html="display(price.LocationFrom)"></td>
+                                    <td ng-bind-html="display(price.LocationTo)"></td>
+                                    <td ng-bind-html="display(price.OneBdrm)"></td>
+                                    <td ng-bind-html="display(price.ThreeBdrm)"></td>
+                                    <td ng-bind-html="display(price.FiveBdrm)"></td>
                                 </tr>
                             </tbody>
                         </table>
